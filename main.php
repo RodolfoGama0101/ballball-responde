@@ -102,6 +102,7 @@ require 'conexao.php';
             <form method="post" onsubmit="atualiza()">
                 <label for="materia">Selecione uma materia:</label>
                 <select name="materia" id="materia">
+                    <option value="nada">Qualquer</option>
                     <?php
                     require 'conexao.php';
                     $sql = "SELECT idMateria, nomeMateria FROM materia";
@@ -117,18 +118,18 @@ require 'conexao.php';
                 <br>
                 <label>Quantidade de questoes:</label>
                 <input type="number" name="qtd" placeholder="2" required="required" class="qtd-questoes"><br>
-                <hr />
-                <input type="submit" value="Aplicar filtros">
-            </form>
+                <hr/>
+                
         </div>
     </div>
     <div class="dir">
         <!-- cabecalho -->
         <header>
             <nav>
-                <input type="text" placeholder="pesquise pelo enunciado..." />
-                <button>pesquisar</button>
+                <input type="text" name="pesquisa" placeholder="pesquise pelo enunciado..." />
+                <input type="submit" value="pesquisar">
             </nav>
+            </form>
             <hr />
         </header>
 
@@ -147,8 +148,13 @@ require 'conexao.php';
             if ($qtd <= 0) {
                 echo "alert('Quantidade de questões deve ser um numero positivo');";
             }
+            $pesquisa = $_POST['pesquisa'];
             $materia = $_POST['materia'];
-            $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' ORDER BY RAND() LIMIT $qtd";
+            if($materia == "nada"){
+                $sql = "SELECT * FROM pergunta ORDER BY RAND() LIKE \"%$pesquisa%\"  LIMIT $qtd;";
+            }else{
+                $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' ORDER BY RAND() LIKE "%$pesquisa%" LIMIT $qtd;";    
+            }
             $pergunta = $conexao->query($sql);
 
             if ($pergunta->num_rows > 0) {
