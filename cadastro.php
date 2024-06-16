@@ -21,6 +21,6 @@ include "redireciona.php";
             <input type="password" name="pass" placeholder="Senha" required="required"><br>
         <button type="submit" name="entrar">Fazer cadastro</button>
     </form>
-    <a href="login.php">Já possui uma conta?</a>
+    <a href="index.php">Já possui uma conta?</a>
 </body>
 </html>

@@ -1,7 +1,6 @@
 <?php
 include "verifica.php";
 require 'conexao.php';
-//session_destroy(); 
 ?>
 
 <!DOCTYPE html>
@@ -84,32 +83,61 @@ require 'conexao.php';
         a {
             padding: 0.5rem;
         }
+
+        .qtd-questoes {
+            width: 40px;
+        }
+
+        .a-logout {
+            text-decoration: none;
+        }
     </style>
 </head>
 
 <body>
-    <form method="post" onsubmit="atualiza()">
-        <label for="materia">Selecione uma materia:</label>
-        <select name="materia" id="materia">
-            <?php
-            require 'conexao.php';
-            $sql = "SELECT idMateria, nomeMateria FROM materia";
-            $result = $conexao->query($sql);
+    <div class="esq">
+        <h1>Filtrar</h1>
+        <div class="">
+            <h2>Matérias</h2>
+            <form method="post" onsubmit="atualiza()">
+                <label for="materia">Selecione uma materia:</label>
+                <select name="materia" id="materia">
+                    <?php
+                    require 'conexao.php';
+                    $sql = "SELECT idMateria, nomeMateria FROM materia";
+                    $result = $conexao->query($sql);
 
-            if ($result->num_rows > 0) {
-                while ($row = $result->fetch_assoc()) {
-                    echo "<option value='" . $row['idMateria'] . "'>" . $row['nomeMateria'] . "</option>";
-                }
-            }
-            ?>
-        </select>
-        <br>
-        <label>Quantidade de questoes:</label>
-        <input type="number" name="qtd" placeholder="coloque a quantidade" required="required"><br>
-        <br>
-        <input type="submit" value="pesquisar">
-    </form>
-    <div class="container" id="container"></div>
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row['idMateria'] . "'>" . $row['nomeMateria'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
+                <br>
+                <label>Quantidade de questoes:</label>
+                <input type="number" name="qtd" placeholder="2" required="required" class="qtd-questoes"><br>
+                <hr />
+                <input type="submit" value="Aplicar filtros">
+            </form>
+        </div>
+    </div>
+    <div class="dir">
+        <!-- cabecalho -->
+        <header>
+            <nav>
+                <input type="text" placeholder="pesquise pelo enunciado..." />
+                <button>pesquisar</button>
+            </nav>
+            <hr />
+        </header>
+
+        <!-- seção dos enunciados -->
+        <main>
+            <div class="container" id="container"></div>
+        </main>
+        <button type="button"><a href="logout.php" class="a-logout">Logout</a></button>
+    </div>
 
     <script>
         atualiza();
