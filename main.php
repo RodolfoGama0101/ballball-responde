@@ -123,10 +123,10 @@ require 'conexao.php';
         </div>
     </div>
     <div class="dir">
-        <!-- cabecalho -->
+        <!-- Cabeçalho -->
         <header>
             <nav>
-                <input type="text" name="pesquisa" placeholder="pesquise pelo enunciado..." />
+                <input type="text" name="pesquisa" placeholder="Pesquise pelo enunciado" />
                 <input type="submit" value="pesquisar">
             </nav>
             </form>
@@ -151,9 +151,9 @@ require 'conexao.php';
             $pesquisa = $_POST['pesquisa'];
             $materia = $_POST['materia'];
             if($materia == "nada"){
-                $sql = "SELECT * FROM pergunta ORDER BY RAND() LIKE \"%$pesquisa%\"  LIMIT $qtd;";
+                $sql = "SELECT * FROM pergunta ORDER BY RAND() LIKE '%$pesquisa%'  LIMIT $qtd;";
             }else{
-                $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' ORDER BY RAND() LIKE "%$pesquisa%" LIMIT $qtd;";    
+                $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' ORDER BY RAND() LIKE '%$pesquisa%' LIMIT $qtd;";    
             }
             $pergunta = $conexao->query($sql);
 
