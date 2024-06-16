@@ -151,12 +151,12 @@ require 'conexao.php';
             $pesquisa = $_POST['pesquisa'];
             $materia = $_POST['materia'];
             if($materia == "nada"){
-                $sql = "SELECT * FROM pergunta ORDER BY RAND() LIKE '%$pesquisa%'  LIMIT $qtd;";
-            }else{
-                $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' ORDER BY RAND() LIKE '%$pesquisa%' LIMIT $qtd;";    
+                $sql = "SELECT * FROM pergunta ORDER BY RAND() WHERE enunciado LIKE \"%$pesquisa%\"  LIMIT $qtd;";
+            } else {
+                $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' AND enunciado LIKE \"%$pesquisa%\" ORDER BY RAND() LIKE '%$pesquisa%' LIMIT $qtd;";    
             }
             $pergunta = $conexao->query($sql);
-
+            
             if ($pergunta->num_rows > 0) {
                 while ($row_perg = $pergunta->fetch_assoc()) {
                     $enunciado = $row_perg["enunciado"];
