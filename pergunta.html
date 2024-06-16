@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>bbresponde - pergunta</title>
+  </head>
+  <body>
+    <div class="pergunta">
+      <!-- ENUNCIADO -->
+      <h3>1. (Enem/2013)</h3>
+      <!-- IMAGEM -->
+      <img src="https://static.todamateria.com.br/upload/ch/ar/chargeenem.jpg" alt="">
+      <!-- REFERENCIAS -->
+      <i>Disponível em: http://clubedamafalda.blogspot.com.br. Acesso em: 21 set. 2011.</i>
+      <!-- TEXTO OU PERGUNTA -->
+      <p>Nessa charge, o recurso morfossintático que colabora para o efeito de humor está indicado pelo(a)</p>
+
+      <br />
+      <input class="resposta" type="text" name="" id="" placeholder="resposta..." />
+    </div>
+    <!-- rodape -->
+    <footer>
+      <button><- anterior</button>
+      <button>próximo -></button>
+    </footer>
+  </body>
+</html>
+<style>
+  html,
+  body,
+  input {
+    padding: 0;
+    margin: 0;
+  }
+  body {
+    display: flex;
+
+    justify-content: center;
+
+    height: 90vh;
+    width: 85vw;
+
+    background-color: white;
+    border-radius: 1rem;
+  }
+  html {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: black;
+    margin-top: 1rem;
+  }
+  .pergunta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  .resposta {
+    width: 50vw;
+    height: 10vh;
+  }
+  footer {
+    position: absolute;
+    height: 5vh;
+    display: flex;
+    justify-content: space-around;
+    margin-top: 90vh;
+    width: 85vw;
+  }
+</style>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ballballresponde</title>
+
+  <style>
+    body {
+      display: flex;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+    }
+
+    main {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+
+      border: 1px solid gray;
+    }
+
+    .dir {
+      width: 100%;
+      padding: 1rem;
+    }
+
+    .esq {
+      width: 20vw;
+      padding: 1rem;
+    }
+
+    .checks {
+      display: flex;
+    }
+
+    .quantia {
+      width: 10vw;
+    }
+
+    .aplicar {
+      margin-top: 1rem;
+      width: 100%;
+    }
+
+    a {
+      padding: 0.5rem;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- divisao da tela em duas colunas -->
+  <div class="esq">
+    <h1>filtrar</h1>
+    <div class="">
+      <h2>materia</h2>
+      <div class="checks">
+        <input id="portugues" type="checkbox" />
+        <label>portugues</label>
+      </div>
+      <div class="checks">
+        <input id="matematica" type="checkbox" />
+        <label>matematica</label>
+      </div>
+      <div class="checks">
+        <input id="fisica" type="checkbox" />
+        <label>paulo henrique</label>
+      </div>
+      <hr />
+    </div>
+
+    <div>
+      <h2>quantia</h2>
+      <input class="quantia" type="number" />
+      <hr />
+    </div>
+
+    <button class="aplicar" type="button">aplicar filtros</button>
+  </div>
+  <div class="dir">
+    <!-- cabecalho -->
+    <header>
+      <nav>
+        <input type="text" placeholder="pesquise pelo enunciado..." />
+        <button>pesquisar</button>
+      </nav>
+      <hr />
+    </header>
+
+    <!-- seção dos enunciados -->
+    <main>
+      <!-- EXEMPLO SE O FILTRO RETORNASSE 4 PERGUNTAS -->
+      <a href="pergunta.html">ENUNCIADO A (CLIQUE AQUI)</a>
+      <a href="perguntadissertativa.html">OUTRO ENUNCIADO (CLIQUE AQUI) (DISSERTATIVO)</a>
+      <a href="pergunta.html">OTRO (CLIQUE AQUI)</a>
+      <a href="perguntadissertativa.html">QUATRO PERGUNTAS WTG WHAT THE HELLLLLLLLL (CLIQUE AQUI)
+        (DISSERTATIVO)</a>
+    </main>
+  </div>
+</body>
+
+</html>
