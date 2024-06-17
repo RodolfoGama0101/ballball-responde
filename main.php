@@ -138,7 +138,8 @@ require 'conexao.php';
         <main>
             <div class="container" id="container"></div>
         </main>
-        <button type="button"><a href="logout.php" class="a-logout">Logout</a></button>
+        <a href="logout.php"><button type="button">Logout</button></a>
+        <a href="cadastroPergunta.php"><button type="button">Cadastrar Pergunta</button></a>
     </div>
     </body>
 </html>
