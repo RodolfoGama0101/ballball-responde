@@ -9,9 +9,7 @@ $query = "INSERT INTO `pergunta` (`idPergunta`, `enunciado`, `idmateria`, `idtip
 
 $result = mysqli_query($conexao, $query);
 
-if ($inputTipoPergunta == 2) {
-    print("<script> document.location='respostaD.php' </script>");
-} else if ($inputTipoPergunta == 1) { 
+if ($inputTipoPergunta == 1) { 
     print("<script> document.location='respostaA.php' </script>");
 }
 
