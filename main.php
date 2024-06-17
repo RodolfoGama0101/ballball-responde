@@ -99,7 +99,7 @@ require 'conexao.php';
         <h1>Filtrar</h1>
         <div class="">
             <h2>Matérias</h2>
-            <form method="post" onsubmit="atualiza()">
+            <form method="post" action="pergunta.php">
                 <label for="materia">Selecione uma materia:</label>
                 <select name="materia" id="materia">
                     <option value="nada">Qualquer</option>
@@ -117,7 +117,8 @@ require 'conexao.php';
                 </select>
                 <br>
                 <label>Quantidade de questoes:</label>
-                <input type="number" name="qtd" placeholder="2" required="required" class="qtd-questoes"><br>
+                <input type="number" name="qtd" placeholder="2" required="required" class="qtd-questoes"> <br>
+                <?php if(isset($_COOKIE["mensagemqtd"])){echo "<br> " . $_COOKIE["mensagemqtd"] . "</b>";}?> <br>
                 <hr/>
                 
         </div>
@@ -139,78 +140,5 @@ require 'conexao.php';
         </main>
         <button type="button"><a href="logout.php" class="a-logout">Logout</a></button>
     </div>
-
-    <script>
-        atualiza();
-        function atualiza() {
-            <?php
-            $qtd = $_POST['qtd'];
-            if ($qtd <= 0) {
-                echo "alert('Quantidade de questões deve ser um numero positivo');";
-            }
-            $pesquisa = $_POST['pesquisa'];
-            $materia = $_POST['materia'];
-            if($materia == "nada"){
-                $sql = "SELECT * FROM pergunta ORDER BY RAND() WHERE enunciado LIKE \"%$pesquisa%\"  LIMIT $qtd;";
-            } else {
-                $sql = "SELECT * FROM pergunta WHERE idmateria = '$materia' AND enunciado LIKE \"%$pesquisa%\" ORDER BY RAND() LIKE '%$pesquisa%' LIMIT $qtd;";    
-            }
-            $pergunta = $conexao->query($sql);
-            
-            if ($pergunta->num_rows > 0) {
-                while ($row_perg = $pergunta->fetch_assoc()) {
-                    $enunciado = $row_perg["enunciado"];
-                    $tipo = $row_perg["idtipo"];
-                    $certa = '';
-                    $erradas = [];
-
-                    if ($tipo == 1) {
-                        $id = $row_perg["idPergunta"];
-                        $sqlResposta = "SELECT * FROM resposta WHERE idperg = '$id'";
-                        $resposta = $conexao->query($sqlResposta);
-                        if ($resposta->num_rows > 0) {
-                            while ($row_resp = $resposta->fetch_assoc()) {
-                                if ($row_resp["idalternativa"] == 1) {
-                                    $certa = $row_resp["descricao"];
-                                } else {
-                                    $erradas[] = $row_resp["descricao"];
-                                }
-                            }
-                        }
-                    }
-
-                    $objeto = [
-                        'enunciado' => $enunciado,
-                        'descricaoc' => $certa,
-                        'descricaoe' => implode("<p>", $erradas)
-                    ];
-
-                    $dados[] = $objeto;
-                }
-            }
-            ?>
-                document.getElementById('container').innerHTML = '';     
-                const dadosCartas = <?php echo json_encode($dados); ?>
-
-                dadosCartas.forEach(dado => {
-                const novaCarta = document.createElement('div');
-                novaCarta.classList.add('card');
-
-                const enunciado = document.createElement('h2');
-                enunciado.innerHTML = dado.enunciado;
-                const descricaoc = document.createElement('b');
-                descricaoc.innerHTML = dado.descricaoc;
-                const descricaoe = document.createElement('p');
-                descricaoe.innerHTML = dado.descricaoe;
-
-                novaCarta.appendChild(enunciado);
-                novaCarta.appendChild(descricaoc);
-                novaCarta.appendChild(descricaoe);
-
-                document.getElementById('container').appendChild(novaCarta);
-                });
-            }
-        </script>
-
     </body>
 </html>
