@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 16/06/2024 às 07:21
--- Versão do servidor: 10.4.32-MariaDB
--- Versão do PHP: 8.2.12
+-- Generation Time: Jun 18, 2024 at 03:57 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `ball-ball-responde`
+-- Database: `ballball_responde`
 --
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `alternativa`
+-- Table structure for table `alternativa`
 --
 
 CREATE TABLE `alternativa` (
@@ -33,7 +33,7 @@ CREATE TABLE `alternativa` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `alternativa`
+-- Dumping data for table `alternativa`
 --
 
 INSERT INTO `alternativa` (`idAlternativa`, `certa`) VALUES
@@ -43,7 +43,7 @@ INSERT INTO `alternativa` (`idAlternativa`, `certa`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `login`
+-- Table structure for table `login`
 --
 
 CREATE TABLE `login` (
@@ -54,17 +54,19 @@ CREATE TABLE `login` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `login`
+-- Dumping data for table `login`
 --
 
 INSERT INTO `login` (`idLogin`, `nome`, `email`, `senha`) VALUES
 (1, 'phdarido', 'phdarido@gmail.com', '1'),
-(5, 'phdarido1', 'phdarido1@gmail.com', '$2y$10$oVuC74hGbKhMH');
+(5, 'phdarido1', 'phdarido1@gmail.com', '$2y$10$oVuC74hGbKhMH'),
+(6, 'Rodolfo', 'rodolfo.gama2006@gmail.com', 'rodolfo123'),
+(7, 'Jubileu Nemeu', 'jubileu.nemeu@gmail.com', 'jubileu123');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `materia`
+-- Table structure for table `materia`
 --
 
 CREATE TABLE `materia` (
@@ -73,17 +75,22 @@ CREATE TABLE `materia` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `materia`
+-- Dumping data for table `materia`
 --
 
 INSERT INTO `materia` (`idMateria`, `nomeMateria`) VALUES
-(1, 'matematica'),
-(2, 'portugues');
+(1, 'Matemática'),
+(2, 'Português'),
+(3, 'História'),
+(4, 'Geografia'),
+(5, 'Física'),
+(6, 'Programação'),
+(7, 'Banco de Dados');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `pergunta`
+-- Table structure for table `pergunta`
 --
 
 CREATE TABLE `pergunta` (
@@ -94,18 +101,20 @@ CREATE TABLE `pergunta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `pergunta`
+-- Dumping data for table `pergunta`
 --
 
 INSERT INTO `pergunta` (`idPergunta`, `enunciado`, `idmateria`, `idtipo`) VALUES
-(1, 'descreva o modernismo', 2, 2),
-(2, 'alguma coisa de matematica', 1, 1),
-(3, 'alguma coisa de portugues', 2, 1);
+(34, 'Quanto é 30 + 40?', 1, 1),
+(35, 'Sobre o romantismo, como foi a literatura da época?', 2, 2),
+(36, 'O que é eletromagnetismo?', 5, 2),
+(37, 'O que é placa tectônica?', 4, 2),
+(38, 'O que é PHP', 6, 1);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `resposta`
+-- Table structure for table `resposta`
 --
 
 CREATE TABLE `resposta` (
@@ -116,20 +125,23 @@ CREATE TABLE `resposta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `resposta`
+-- Dumping data for table `resposta`
 --
 
 INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES
-(1, '14', 2, 2),
-(2, '25', 1, 2),
-(3, '1', 2, 2),
-(5, 'adverbio', 2, 3),
-(6, 'adjetivo', 1, 3);
+(138, '40', 2, 34),
+(139, '30', 2, 34),
+(140, '50', 2, 34),
+(141, '70', 1, 34),
+(142, 'Um framework', 2, 38),
+(143, 'Um banco de dados', 2, 38),
+(144, 'Um automóvel', 2, 38),
+(145, 'Uma linguagem de programação', 1, 38);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura para tabela `tiporesposta`
+-- Table structure for table `tiporesposta`
 --
 
 CREATE TABLE `tiporesposta` (
@@ -138,7 +150,7 @@ CREATE TABLE `tiporesposta` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Despejando dados para a tabela `tiporesposta`
+-- Dumping data for table `tiporesposta`
 --
 
 INSERT INTO `tiporesposta` (`idTipoResposta`, `tipo`) VALUES
@@ -146,81 +158,81 @@ INSERT INTO `tiporesposta` (`idTipoResposta`, `tipo`) VALUES
 (2, 'dissertativa');
 
 --
--- Índices para tabelas despejadas
+-- Indexes for dumped tables
 --
 
 --
--- Índices de tabela `alternativa`
+-- Indexes for table `alternativa`
 --
 ALTER TABLE `alternativa`
   ADD PRIMARY KEY (`idAlternativa`);
 
 --
--- Índices de tabela `login`
+-- Indexes for table `login`
 --
 ALTER TABLE `login`
   ADD PRIMARY KEY (`idLogin`);
 
 --
--- Índices de tabela `materia`
+-- Indexes for table `materia`
 --
 ALTER TABLE `materia`
   ADD PRIMARY KEY (`idMateria`);
 
 --
--- Índices de tabela `pergunta`
+-- Indexes for table `pergunta`
 --
 ALTER TABLE `pergunta`
   ADD PRIMARY KEY (`idPergunta`);
 
 --
--- Índices de tabela `resposta`
+-- Indexes for table `resposta`
 --
 ALTER TABLE `resposta`
   ADD PRIMARY KEY (`idResposta`);
 
 --
--- Índices de tabela `tiporesposta`
+-- Indexes for table `tiporesposta`
 --
 ALTER TABLE `tiporesposta`
   ADD PRIMARY KEY (`idTipoResposta`);
 
 --
--- AUTO_INCREMENT para tabelas despejadas
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT de tabela `alternativa`
+-- AUTO_INCREMENT for table `alternativa`
 --
 ALTER TABLE `alternativa`
   MODIFY `idAlternativa` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT de tabela `login`
+-- AUTO_INCREMENT for table `login`
 --
 ALTER TABLE `login`
-  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idLogin` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de tabela `materia`
+-- AUTO_INCREMENT for table `materia`
 --
 ALTER TABLE `materia`
-  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idMateria` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT de tabela `pergunta`
+-- AUTO_INCREMENT for table `pergunta`
 --
 ALTER TABLE `pergunta`
-  MODIFY `idPergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idPergunta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
--- AUTO_INCREMENT de tabela `resposta`
+-- AUTO_INCREMENT for table `resposta`
 --
 ALTER TABLE `resposta`
-  MODIFY `idResposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `idResposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=146;
 
 --
--- AUTO_INCREMENT de tabela `tiporesposta`
+-- AUTO_INCREMENT for table `tiporesposta`
 --
 ALTER TABLE `tiporesposta`
   MODIFY `idTipoResposta` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
