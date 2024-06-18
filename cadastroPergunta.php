@@ -19,6 +19,7 @@
 
 <body>
     <h1>Adicionar perguntas</h1>
+    <h2><?php if(isset($_COOKIE["cadastroEnun"])){ echo "<br>" . $_COOKIE["cadastroEnun"] . "<br>";}?></h2>
     <div class="container">
         <form action="appCadastroPergunta.php" method="post">
             <label>Enunciado: </label> <br>
@@ -26,11 +27,20 @@
             <br>
 
             <label>Matéria: </label>
-            <select name="selectMateria" id="select-materia">
-                <option value="1">Matemática</option>
-                <option value="2">Português</option>
-                <option value="3">História</option>
-            </select>
+            <select name="selectMateria" id="materia">
+                    <option value="nada">Qualquer</option>
+                    <?php
+                    require 'conexao.php';
+                    $sql = "SELECT idMateria, nomeMateria FROM materia";
+                    $result = $conexao->query($sql);
+
+                    if ($result->num_rows > 0) {
+                        while ($row = $result->fetch_assoc()) {
+                            echo "<option value='" . $row['idMateria'] . "'>" . $row['nomeMateria'] . "</option>";
+                        }
+                    }
+                    ?>
+                </select>
             <br>
 
             <label>Tipo de pergunta: </label>
@@ -40,7 +50,7 @@
             </select>
             <br>
 
-            <button type="submit">Adicionar pergunta</button>
+            <button type="submit" name="A">Adicionar pergunta</button>
         </form>
     </div>
 </body>

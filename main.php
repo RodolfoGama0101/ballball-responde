@@ -128,7 +128,7 @@ require 'conexao.php';
         <header>
             <nav>
                 <input type="text" name="pesquisa" placeholder="Pesquise pelo enunciado" />
-                <input type="submit" value="pesquisar">
+                <input type="submit" value="PESQUISAR">
             </nav>
             </form>
             <hr />
@@ -138,8 +138,8 @@ require 'conexao.php';
         <main>
             <div class="container" id="container"></div>
         </main>
-        <a href="logout.php"><button type="button">Logout</button></a>
         <a href="cadastroPergunta.php"><button type="button">Cadastrar Pergunta</button></a>
+        <a href="logout.php"><button type="button">Logout</button></a>
     </div>
     </body>
 </html>

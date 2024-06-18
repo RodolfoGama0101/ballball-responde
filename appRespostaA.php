@@ -1,53 +1,59 @@
-<?php 
-include("conexao.php");
-include("appCadastroPergunta.php");
+<?php
+include "conexao.php";
+session_start();
+
+$enunciado = $_SESSION['enunciado'];
 
 $alternativa1 = $_POST['a'];
 $alternativa2 = $_POST['b'];
 $alternativa3 = $_POST['c'];
 $alternativa4 = $_POST['d'];
-$correta = $_POST['correta'];
+$correta = intval($_POST['correta']);
 
-$sql = "SELECT idPergunta FROM `pergunta` WHERE `enunciado` = '$inputEnunciado' AND `idmateria` = $inputMateria AND `idtipo` = $inputTipoPergunta;";
+$sql = "SELECT idPergunta FROM `pergunta` WHERE `enunciado` = '$enunciado';";
 $result = mysqli_query($conexao, $sql);
 
-
-// echo "Alternativa A: " . $alternativa1 . "<br>";
-// echo "Alternativa B: " . $alternativa2 . "<br>";
-// echo "Alternativa C: " . $alternativa3 . "<br>";
-// echo "Alternativa D: " . $alternativa4 . "<br>";
-// echo "Alternativa correta: " . $correta;
-
-if ($correta = 1) {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa1', '1', '$result');";
-    $result = mysqli_query($conexao, $sql);
-} else {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa1', '2', '$result');";
-    $result = mysqli_query($conexao, $sql);
+while ($row = mysqli_fetch_assoc($result)) {
+    $idPergunta = $row['idPergunta'];
 }
 
-if ($correta = 2) {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa2', '1', '$result');";
-    $result = mysqli_query($conexao, $sql);
-} else {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa2', '2', '$result');";
-    $result = mysqli_query($conexao, $sql);
+if ($alternativa1 != "") {
+    if ($correta == "1") {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa1', '1', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    } else {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa1', '2', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    }
 }
 
-if ($correta = 3) {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa3', '1', '$result');";
-    $result = mysqli_query($conexao, $sql);
-} else {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa3', '2', '$result');";
-    $result = mysqli_query($conexao, $sql);
+if ($alternativa2 != "") {
+    if ($correta == "2") {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa2', '1', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    } else {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa2', '2', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    }
 }
 
-if ($correta = 4) {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa4', '1', '$result');";
-    $result = mysqli_query($conexao, $sql);
-} else {
-    $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa4', '2', '$result');";
-    $result = mysqli_query($conexao, $sql);
+if ($alternativa3 != "") {
+    if ($correta == "3") {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa3', '1', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    } else {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa3', '2', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    }
 }
-
+if ($alternativa4 != "") {
+    if ($correta == "4") {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa4', '1', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    } else {
+        $sql = "INSERT INTO `resposta` (`idResposta`, `descricao`, `idalternativa`, `idperg`) VALUES (NULL, '$alternativa4', '2', '$idPergunta');";
+        $resultInsert = mysqli_query($conexao, $sql);
+    }
+}
+print ("<script> document.location='main.php' </script>");
 ?>
